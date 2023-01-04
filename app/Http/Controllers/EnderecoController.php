@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Endereco;
 use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
@@ -21,9 +22,9 @@ class EnderecoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view("endereco.create", ['id' => $id]);
     }
 
     /**
@@ -34,7 +35,16 @@ class EnderecoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $endereco  = new Endereco;
+        $endereco->n_casa = $request->n_casa;
+        $endereco->rua = $request->rua;
+        $endereco->bairro = $request->bairro;
+        $endereco->cidade = $request->cidade;
+        $endereco->fk_cliente = $request->fk_cliente;
+        
+        $endereco->save();
+
+        return redirect('/pedido/create/'.$endereco->id);
     }
 
     /**

@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PizzaController;
+use App\Models\Endereco;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +24,12 @@ Route::get('/', function() {
     return view('index');
 });
 
-Route::get('/cliente', function() {
-    return view('cliente');
-});
 
-Route::get('/endereco', function() {
-    return view('endereco');
-});
 
-Route::get('/pedido', function() {
-    return view('pedido');
-});
+Route::get('/cliente/create/', [ClienteController::class, 'create']);
+Route::post('/cliente', [ClienteController::class, 'store']);
+
+Route::get('/endereco/create/{id}',[EnderecoController::class, 'create']);
+Route::post('/endereco', [EnderecoController::class, 'store']);
+
+Route::get('/pedido/create/{id}', [PedidoController::class, 'create']);

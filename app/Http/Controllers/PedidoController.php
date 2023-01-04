@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pizza;
 
 class PedidoController extends Controller
 {
@@ -21,9 +22,11 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $pizzas = Pizza::all();
+        
+        return view("pedido.create", ['id' => $id, 'pizzas' => $pizzas]);
     }
 
     /**

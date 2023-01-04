@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Cliente;
+use Facade\FlareClient\Http\Client;
+
 class ClienteController extends Controller
 {
     /**
@@ -17,13 +20,13 @@ class ClienteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a.- new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('cliente.create');
     }
 
     /**
@@ -34,7 +37,15 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente;
+
+        $cliente->nome = $request->nome;
+        $cliente->telefone = $request->telefone;
+        
+        $cliente->save();
+
+        
+        return redirect('/endereco/create/'.$cliente->id);
     }
 
     /**
@@ -81,4 +92,5 @@ class ClienteController extends Controller
     {
         //
     }
+
 }
