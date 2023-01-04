@@ -24,3 +24,7 @@ Route::get('/cliente', function() {
 Route::get('/endereco', function() {
     return view('endereco');
 });
+
+Route::get('/pedido', function() {
+    return view('pedido');
+});
