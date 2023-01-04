@@ -12,6 +12,7 @@
         --ionicon-stroke-width: 8px;
     }
 </style>
+<!-- Testando pull request -->
 
 @section('content')
 <div id="main" class="d-flex flex-column align-items-center ">
