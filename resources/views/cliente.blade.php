@@ -14,7 +14,10 @@
 </style>
 
 @section('content')
-<div id="main" class="d-flex flex-column align-items-center ">
+<header>
+    
+</header>
+<main id="main" class="d-flex flex-column align-items-center ">
     <h1 class="text-center">Registrar Cliente</h1>
     <ion-icon name="person-outline"></ion-icon>
     <form class="d-flex flex-column align-items-center">
@@ -28,5 +31,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Proximo</button>
     </form>
-</div>
+</main>
 @endsection
