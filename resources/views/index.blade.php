@@ -56,7 +56,7 @@
 
             <h1>Gleba Buriti do Paraíso</h1>
             <h2>MA-349, KM 02</h2>
-            <button><a href="/cliente" class="pedido">FAÇA SEU PEDIDO</a></button>
+            <button><a href="/cliente/create" class="pedido">FAÇA SEU PEDIDO</a></button>
 
         </aside>
 

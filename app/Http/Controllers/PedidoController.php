@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pizza;
+use App\Models\Pedido;
 
 class PedidoController extends Controller
 {
@@ -37,7 +38,18 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pedido = new Pedido;
+        for ($i = 0; $i < 24; $i++) {
+            if($request->quantidade[$i] != 0 ) {
+                $pedido->quantidade = $request->quantidade[$i];
+                $pedido->fk_pizza = $request->fk_pizza[$i+1];
+                $pedido->fk_cliente = $request->fk_cliente;
+                $pedido->save();
+            }
+        }
+
+        return redirect("/sucesso/{$pedido->fk_cliente}");
+
     }
 
     /**

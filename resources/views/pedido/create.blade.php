@@ -7,7 +7,8 @@
 <div class="card-group mt-4 mb-4">
     @foreach($pizzas as $pizza)
     <div class="col-sm-4">
-        <from class="form-group">
+        <form method="post" action="/pedido" class="form-group">
+            @csrf
             <div class="card mt-3">
                 <img class="card-img-top" src="/img/post-1.jpg" alt="Imagem de capa do card">
                 <div class="card-body">
@@ -24,6 +25,8 @@
                         <div>
                             <span>Quantidade: </span> <input type="number" name="quantidade[]" id="quantidade" min="0" max="15">
                         </div>
+                        <input type="hidden" value="{{ $pizza->pk_pizza }}" name="fk_pizza[]">
+                        <input type="hidden" value="{{ $id }}" name="fk_cliente">
                     </div>
                 </div>
             </div>
@@ -33,5 +36,5 @@
 <div class="mb-4" style="text-align: center;">
     <button type="submit" id="btn" class="btn btn-primary send">Fazer Pedido</button>
 </div>
-</from>
+</form>
 @endsection

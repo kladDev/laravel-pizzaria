@@ -33,3 +33,8 @@ Route::get('/endereco/create/{id}',[EnderecoController::class, 'create']);
 Route::post('/endereco', [EnderecoController::class, 'store']);
 
 Route::get('/pedido/create/{id}', [PedidoController::class, 'create']);
+Route::post('/pedido',[PedidoController::class, 'store']);
+
+Route::get('/sucesso/{id}', function($id) {
+    return view('sucesso', ['id' => $id]);
+});

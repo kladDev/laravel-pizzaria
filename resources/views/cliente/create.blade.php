@@ -31,9 +31,7 @@
             <label for="telefone">Telefone</label>
             <input type="tel" class="form-control" name="telefone" id="telefone" placeholder="ex: (98) 99121-1231" required>
         </div>
-        <div style="text-align: right;">
-            <button type="submit" class="btn btn-primary">Proximo</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Proximo</button>
     </form>
 </main>
 @endsection

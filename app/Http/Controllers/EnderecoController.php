@@ -44,7 +44,7 @@ class EnderecoController extends Controller
         
         $endereco->save();
 
-        return redirect('/pedido/create/'.$endereco->id);
+        return redirect('/pedido/create/'.$endereco->fk_cliente);
     }
 
     /**
