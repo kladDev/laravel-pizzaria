@@ -3,14 +3,23 @@
 @section('title', 'Pedido')
 
 @section('content')
-
+@php
+$i = 0;
+$j =0;
+@endphp
+<h1 class="text-center mt-3">Estamos quase lá</h1>
 <div class="card-group mt-4 mb-4">
     @foreach($pizzas as $pizza)
+    @if($i % 3 == 0)
+        @php
+        $j++;
+        @endphp
+    @endif
     <div class="col-sm-4">
         <form method="post" action="/pedido" class="form-group">
             @csrf
-            <div class="card mt-3">
-                <img class="card-img-top" src="/img/post-1.jpg" alt="Imagem de capa do card">
+            <div style="background-color: #eee;" class="card mt-3">
+                <img style="height: 20rem; object-fit: cover;" class="card-img-top" src="/img/post-{{$j}}.jpg" alt="Imagem de capa do card">
                 <div class="card-body">
                     <div>
                         <div>
@@ -31,6 +40,9 @@
                 </div>
             </div>
     </div>
+    @php
+    $i++;
+    @endphp
     @endforeach
 </div>
 <div class="mb-4" style="text-align: center;">

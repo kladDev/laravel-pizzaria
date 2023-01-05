@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Cliente;
 use Facade\FlareClient\Http\Client;
+use Illuminate\Support\Facades\DB;
+
 
 class ClienteController extends Controller
 {
@@ -45,7 +47,7 @@ class ClienteController extends Controller
         $cliente->save();
 
         
-        return redirect('/endereco/create/'.$cliente->id);
+        return redirect('/endereco/create/'.$cliente->pk_cliente);
     }
 
     /**
@@ -67,7 +69,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = DB::table('cliente')->where('pk_cliente', $id)->first();
+        return view("cliente.edit", ['id' => $id, 'cliente' => $cliente]);
     }
 
     /**
@@ -79,7 +82,12 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::find($id);
+        $cliente->nome = $request->nome;
+        $cliente->telefone = $request->telefone;
+        $cliente->save();
+
+        return redirect('/listar');
     }
 
     /**

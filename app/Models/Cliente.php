@@ -9,5 +9,6 @@ class Cliente extends Model
 {
     protected $table = "cliente";
     public $timestamps = false;
+    protected $primaryKey = 'pk_cliente';
     use HasFactory;
 }

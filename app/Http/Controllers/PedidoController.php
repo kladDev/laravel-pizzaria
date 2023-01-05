@@ -7,6 +7,8 @@ use App\Models\Pizza;
 use App\Models\Pedido;
 use App\Models\Cliente;
 use App\Models\Endereco;
+use Illuminate\Support\Facades\DB;
+
 
 class PedidoController extends Controller
 {
@@ -68,7 +70,6 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -79,7 +80,9 @@ class PedidoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pizzas = Pizza::all();
+        $pedidos = DB::table('pedido')->where('fk_cliente', $id)->get();
+        return view("pedido.edit", ['id' => $id, 'pedidos' => $pedidos, 'pizzas' => $pizzas]);
     }
 
     /**
@@ -91,7 +94,20 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $i = 0;
+        $pedidos = DB::table('pedido')->where('fk_cliente', $id)->get();
+
+        foreach ($pedidos as $pedido) {
+            $pedido = Pedido::find($pedido->pk_pedido);
+            if ($request->quantidade[$i] == 0) {
+                $pedido->delete();
+            } else {
+                $pedido->quantidade = $request->quantidade[$i];
+                $pedido->save();
+            }
+            $i++;
+        }
+        return redirect('/listar');
     }
 
     /**
@@ -102,6 +118,21 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        $pedidos = DB::table('pedido')->where('fk_cliente', $id)->get();
+        $endereco = DB::table('endereco')->where('fk_cliente', $id)->first();
+
+        $endereco = Endereco::find($endereco->pk_endereco);
+
+        foreach($pedidos as $pedido) {
+            $pedido = Pedido::find($pedido->pk_pedido);
+            $pedido->delete();
+        }
+
+        $endereco->delete();
+        $cliente->delete();
+
+        return redirect('/listar');
+
     }
 }
