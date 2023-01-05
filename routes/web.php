@@ -8,6 +8,7 @@ use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PizzaController;
 use App\Models\Endereco;
+use App\Models\Pedido;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::post('/endereco', [EnderecoController::class, 'store']);
 
 Route::get('/pedido/create/{id}', [PedidoController::class, 'create']);
 Route::post('/pedido',[PedidoController::class, 'store']);
+Route::get('/listar', [PedidoController::class, 'index']);
 
 Route::get('/sucesso/{id}', function($id) {
     return view('sucesso', ['id' => $id]);

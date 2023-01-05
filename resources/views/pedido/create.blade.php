@@ -34,7 +34,7 @@
     @endforeach
 </div>
 <div class="mb-4" style="text-align: center;">
-    <button type="submit" id="btn" class="btn btn-primary send">Fazer Pedido</button>
+    <button type="submit" id="btn" class="btn btn-primary">Fazer Pedido</button>
 </div>
 </form>
 @endsection

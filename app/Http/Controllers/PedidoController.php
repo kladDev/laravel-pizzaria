@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pizza;
 use App\Models\Pedido;
+use App\Models\Cliente;
+use App\Models\Endereco;
 
 class PedidoController extends Controller
 {
@@ -15,7 +17,12 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pizzas = Pizza::all();
+        $pedidos = Pedido::all();
+        $clientes = Cliente::all();
+        $enderecos = Endereco::all();
+
+        return view('listar', ['pizzas' => $pizzas, 'pedidos' => $pedidos, 'clientes' => $clientes, 'enderecos' => $enderecos]);
     }
 
     /**
@@ -26,7 +33,7 @@ class PedidoController extends Controller
     public function create($id)
     {
         $pizzas = Pizza::all();
-        
+
         return view("pedido.create", ['id' => $id, 'pizzas' => $pizzas]);
     }
 
@@ -38,18 +45,19 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $pedido = new Pedido;
+
         for ($i = 0; $i < 24; $i++) {
-            if($request->quantidade[$i] != 0 ) {
+            if ($request->quantidade[$i] != 0) {
+                $pedido = new Pedido;
                 $pedido->quantidade = $request->quantidade[$i];
-                $pedido->fk_pizza = $request->fk_pizza[$i+1];
+                $pedido->fk_pizza = $request->fk_pizza[$i];
                 $pedido->fk_cliente = $request->fk_cliente;
+                echo $pedido;
                 $pedido->save();
             }
         }
 
         return redirect("/sucesso/{$pedido->fk_cliente}");
-
     }
 
     /**
@@ -60,7 +68,7 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
