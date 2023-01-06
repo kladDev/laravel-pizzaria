@@ -7,6 +7,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\RelatorioController;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Pedido;
@@ -45,7 +46,7 @@ Route::get('/pedido/edit/{id}', [PedidoController::class, 'edit']);
 Route::put('/pedido/update/{id}', [PedidoController::class, 'update']);
 Route::delete('/pedido/destroy/{id}', [PedidoController::class, 'destroy']);
 
-
+Route::get('/relatorio', [RelatorioController::class, 'show']);
 
 
 Route::get('/sucesso/{id}', function($id) {

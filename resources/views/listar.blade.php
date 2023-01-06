@@ -26,7 +26,7 @@
 @section('content')
 <div class="d-flex justify-content-around mt-4">
     <a href="/" class="btn btn-primary">Home</a>
-    <a href="#" class="btn btn-warning">Gerar Relatório</a>
+    <a href="/relatorio" class="btn btn-warning">Gerar Relatório</a>
 </div>
 
 <h2 class="text-center mt-4">Todos os pedidos feitos por <br>
